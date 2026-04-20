@@ -20,8 +20,8 @@ High
 Base URL: https://petstore.swagger.io
 Endpoint: /store/order
 Method: POST
-🔧 Pre-condition
 
+🔧 Pre-condition
 API dalam keadaan aktif dan dapat diakses
 
 📦 Test Data
@@ -33,21 +33,26 @@ API dalam keadaan aktif dan dapat diakses
   "status": "placed",
   "complete": true
 }
+
 ▶️ Steps to Reproduce
 Kirim request POST /store/order
 Gunakan payload di atas
 Amati response dari server
+
 ✅ Expected Result
 Status Code: 400 Bad Request
 Message: "Invalid quantity value"
 Sistem menolak input tidak valid
+
 ❌ Actual Result
 Status Code: 500 Internal Server Error
 Server error muncul akibat input tidak divalidasi
+
 💥 Impact
 Risiko crash pada server akibat input ekstrem
 Potensi DoS (Denial of Service)
 Menunjukkan lemahnya validasi di backend
+
 📎 Evidence
 
 6.png
@@ -80,23 +85,28 @@ Service login aktif
 📦 Test Data
 username=
 password=
+
 ▶️ Steps to Reproduce
 
 Kirim request:
 
 GET /user/login?username=&password=
 Periksa response dari server
+
 ✅ Expected Result
 Status Code: 400 Bad Request atau 401 Unauthorized
 Message: "Username or password required"
 Login gagal jika data kosong
+
 ❌ Actual Result
 Status Code: 200 OK
 Response mengindikasikan login berhasil tanpa kredensial
+
 💥 Impact
 Celah keamanan serius
 Autentikasi dapat dilewati
 Risiko akses tidak sah ke sistem
+
 📎 Evidence
 
 2.png
@@ -122,6 +132,7 @@ Medium
 Base URL: https://petstore.swagger.io
 Endpoint: /pet
 Method: PUT
+
 📦 Test Data
 {
   "id": 2,
@@ -130,21 +141,26 @@ Method: PUT
   "tags": [],
   "status": "sold"
 }
+
 ▶️ Steps to Reproduce
 Kirim request PUT /pet
 Gunakan data dengan field name kosong
 Amati response server
+
 ✅ Expected Result
 Status Code: 400 Bad Request
 Message: "Pet name cannot be empty"
 Data kosong ditolak
+
 ❌ Actual Result
 Status Code: 200 OK
 Update tetap berhasil meskipun data tidak valid
+
 💥 Impact
 Data tidak konsisten di database
 Potensi muncul record invalid (pet tanpa nama)
 Lemahnya validasi input di backend
+
 📎 Evidence
 
 5.png
