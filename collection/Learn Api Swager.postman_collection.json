@@ -1,0 +1,1411 @@
+{
+  "info": {
+    "_postman_id": "d0f1dff5-ec79-4ccc-97a8-673a5b78a12b",
+    "name": "Learn Api Swager",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53556217"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "bugg",
+          "item": [
+            {
+              "name": "Data kosong register",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": 0,\r\n  \"username\": \"\",\r\n  \"firstName\": \"\",\r\n  \"lastName\": \"\",\r\n  \"email\": \"\",\r\n  \"password\": \"\",\r\n  \"phone\": \"\",\r\n  \"userStatus\": 0\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Unautorized Login",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": 0,\r\n  \"username\": \"\",\r\n  \"firstName\": \"\",\r\n  \"lastName\": \"\",\r\n  \"email\": \"\",\r\n  \"password\": \"\",\r\n  \"phone\": \"\",\r\n  \"userStatus\": 0\r\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user/login?username=&password=",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    "login"
+                  ],
+                  "query": [
+                    {
+                      "key": "username",
+                      "value": ""
+                    },
+                    {
+                      "key": "password",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "username kosong sebelum update",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "// Ambil user data dari environment\r",
+                      "let userDataString = pm.environment.get(\"username\");\r",
+                      "\r",
+                      "// Buat username baru\r",
+                      "let newUsername = \"dimas1\";\r",
+                      "\r",
+                      "// Buat objek user yang valid \r",
+                      "let updatedUser = {\r",
+                      "  id: 2,\r",
+                      "  username: newUsername,\r",
+                      "  firstName: \"Dimas\",\r",
+                      "  lastName: \"Maulana\",\r",
+                      "  email: pm.environment.get(\"email\") || \"dimasakbar481@gmail.com\",\r",
+                      "  password: pm.environment.get(\"password\") || \"dimasam1207\",\r",
+                      "  phone: \"081272700900\",\r",
+                      "  userStatus: 1\r",
+                      "};\r",
+                      "\r",
+                      "// Simpan user data ke environment\r",
+                      "pm.environment.set(\"userData\", JSON.stringify(updatedUser));\r",
+                      "pm.environment.set(\"username\", newUsername);\r",
+                      "\r",
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"username\":\"\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user/{{username}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    "{{username}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "create user",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsondata = pm.response.json();\r",
+                  "pm.environment.set(\"token\", jsondata.message);\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.environment.set(\"username\",\"dimasa12\");\r",
+                  "pm.environment.set(\"password\",\"dimasa1207\")   \r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 0,\r\n    \"firstName\": \"dimasakbar \",\r\n    \"lastName\": \"maulana\",\r\n    \"username\": \"{{username}}\",\r\n    \"password\": \"{{password}}\",\r\n    \"email\": \"dimasakbar@gmail.com \",\r\n    \"userStatus\": 0\r\n\r\n    \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status code harus 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user/login?username={{username}}&password={{password}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                "login"
+              ],
+              "query": [
+                {
+                  "key": "username",
+                  "value": "{{username}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get by username",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Ambil response JSON\r",
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "// Simpan ke environment variable\r",
+                  "pm.environment.set(\"userData\", JSON.stringify(response));\r",
+                  "pm.environment.set(\"invalidData\", JSON.stringify(response));\r",
+                  "\r",
+                  "// Debug (optional)\r",
+                  "console.log(\"User Data:\", response);\r",
+                  "\r",
+                  "// test\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user/{{username}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                "{{username}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update username",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// Ambil user data dari environment\r",
+                  "let userDataString = pm.environment.get(\"username\");\r",
+                  "\r",
+                  "// Buat username baru\r",
+                  "let newUsername = \"dimas1\";\r",
+                  "\r",
+                  "// Buat objek user yang valid \r",
+                  "let updatedUser = {\r",
+                  "  id: 2,\r",
+                  "  username: newUsername,\r",
+                  "  firstName: \"Dimas\",\r",
+                  "  lastName: \"Maulana\",\r",
+                  "  email: pm.environment.get(\"email\") || \"dimasakbar481@gmail.com\",\r",
+                  "  password: pm.environment.get(\"password\") || \"dimasam1207\",\r",
+                  "  phone: \"081272700900\",\r",
+                  "  userStatus: 1\r",
+                  "};\r",
+                  "\r",
+                  "// Simpan user data ke environment\r",
+                  "pm.environment.set(\"userData\", JSON.stringify(updatedUser));\r",
+                  "pm.environment.set(\"username\", newUsername);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{{userData}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user/{{username}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                "{{username}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete username",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user/{{username}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user",
+                "{{username}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pet product",
+      "item": [
+        {
+          "name": "bug",
+          "item": [
+            {
+              "name": "invalid data  dan id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": 0,\r\n    \"kategori\":{\r\n        \"id\": 0,\r\n        \"nama\":\" \"\r\n    },\r\n    \"name\":\"\",\r\n    \"photourl\":[\r\n        \"\"\r\n    ],\r\n    \"tags\":[{\r\n        \"id\": 0,\r\n        \"name\": \"\"\r\n    }],\r\n    \"status\":\"\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/pet",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pet"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "invaldi data update",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      "//ambil env petdata \r",
+                      "let petdatastring = pm.environment.get(\"petdata\");\r",
+                      "\r",
+                      "// new name \r",
+                      "let Petname =\"\";\r",
+                      "let id = 2;\r",
+                      "let status = \"sold\"\r",
+                      "\r",
+                      "// update pet data\r",
+                      "\r",
+                      "let updatepet = {\r",
+                      "   id:id,\r",
+                      "   name:Petname,\r",
+                      "   photoUrls: [],\r",
+                      "   tags: [],\r",
+                      "   status:status,\r",
+                      "}\r",
+                      "\r",
+                      "pm.environment.set(\"petdata\", JSON.stringify(updatepet));\r",
+                      "pm.environment.set(\"namaHewan\", Petname);\r",
+                      "pm.environment.set(\"id\",id );\r",
+                      "pm.environment.set(\"status\", status);\r",
+                      "\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"bad request status 400\", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{{petdata}}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/pet/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pet",
+                    ""
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "invalid id",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "// 1. Ambil data response\r",
+                      "const jsonData = pm.response.json();\r",
+                      "\r",
+                      "// 2. Test Keberadaan ID (Akar)\r",
+                      "pm.test(\"Cek apakah ID Utama ada\", function () {\r",
+                      "    pm.expect(jsonData).to.have.property('id');\r",
+                      "});\r",
+                      "\r",
+                      "// 3. Test Konsistensi Tipe Data ID Utama\r",
+                      "pm.test(\"Konsistensi Tipe Data ID Utama\", function () {\r",
+                      "    // Jika nilainya 0, seharusnya Number. \r",
+                      "    // Jika nilainya 9223372036854775807, cek apakah dia berubah jadi string\r",
+                      "    var type = typeof jsonData.id;\r",
+                      "    \r",
+                      "    pm.expect(type).to.equal('number', \r",
+                      "        `BUG TERDETEKSI: ID bernilai ${jsonData.id} tapi bertipe ${type}`);\r",
+                      "});\r",
+                      "\r",
+                      "// 4. Test ID di dalam Objek Kategori (Nested Object)\r",
+                      "pm.test(\"Cek ID di dalam Kategori\", function () {\r",
+                      "    pm.expect(jsonData.kategori.id).to.eql(1);\r",
+                      "    pm.expect(jsonData.kategori.id).to.be.a('number');\r",
+                      "});\r",
+                      "\r",
+                      "// 5. Test ID di dalam Array Tags (List)\r",
+                      "pm.test(\"Cek ID di dalam Tags\", function () {\r",
+                      "    // Karena tags adalah array [], kita ambil index ke-0\r",
+                      "    pm.expect(jsonData.tags[0].id).to.be.a('number');\r",
+                      "});\r",
+                      "\r",
+                      "// Di bagian Pre-request Script, kita simpan ID yang mau dikirim\r",
+                      "// Misal kita kirim ID: 0\r",
+                      "var sentId = 0; \r",
+                      "\r",
+                      "pm.test(\"Cek Integrity: Apakah ID diabaikan server?\", function () {\r",
+                      "    var jsonData = pm.response.json();\r",
+                      "    \r",
+                      "    // Jika kita kirim 0 tapi balasan server BUKAN 0\r",
+                      "    if (jsonData.id !== sentId) {\r",
+                      "        console.warn(\"Server melakukan Auto-Increment. ID dikirim: \" + sentId + \" | ID diterima: \" + jsonData.id);\r",
+                      "    }\r",
+                      "    \r",
+                      "    // Test akan gagal jika server mengganti ID tanpa ijin (jika requirement-nya strict)\r",
+                      "    // pm.expect(jsonData.id).to.eql(sentId); \r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pet/{{id}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pet",
+                    "{{id}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "petproduct",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "    let responseJson = pm.response.json();\r",
+                  "\r",
+                  "    pm.environment.set (\"petdata\", JSON.stringify(responseJson));\r",
+                  "    pm.environment.set (\"id\", responseJson.id);\r",
+                  "    pm.environment.set (\"status\",responseJson.status)\r",
+                  "    console.log (\"pet data tersimpan\")"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 1,\r\n    \"kategori\":{\r\n        \"id\": 1,\r\n        \"nama\":\"peliharaan \"\r\n    },\r\n    \"name\":\"kucing  persia \",\r\n    \"photourl\":[\r\n        \"kucingpersia.jpg\"\r\n    ],\r\n    \"tags\":[{\r\n        \"id\": 1,\r\n        \"name\": \"kucing persia 1\"\r\n    }],\r\n    \"status\":\"avalaibel\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/pet",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pet"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GETbyid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pet/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pet",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Getby status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pet/findByStatus?status={{status}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pet",
+                "findByStatus"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "{{status}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update pet",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "//ambil env petdata \r",
+                  "let petdatastring = pm.environment.get(\"petdata\");\r",
+                  "\r",
+                  "// new name \r",
+                  "let Petname =\"singa\";\r",
+                  "let id = 2;\r",
+                  "let status = \"sold\"\r",
+                  "\r",
+                  "// update pet data\r",
+                  "\r",
+                  "let updatepet = {\r",
+                  "   id:id,\r",
+                  "   name:Petname,\r",
+                  "   photoUrls: [],\r",
+                  "   tags: [],\r",
+                  "   status:status,\r",
+                  "}\r",
+                  "\r",
+                  "pm.environment.set(\"petdata\", JSON.stringify(updatepet));\r",
+                  "pm.environment.set(\"namaHewan\", Petname);\r",
+                  "pm.environment.set(\"id\",id );\r",
+                  "pm.environment.set(\"status\", status);\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{{petdata}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/pet/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pet",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delet pet product",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "if (pm.response.code === 200) {\r",
+                  "\r",
+                  "    let deletedId = pm.environment.get(\"petId\");\r",
+                  "\r",
+                  "    pm.environment.unset(\"petId\");\r",
+                  "    pm.environment.unset(\"petData\");\r",
+                  "\r",
+                  "    console.log(\"Deleted pet ID:\", deletedId);\r",
+                  "}\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pet/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pet",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Strore",
+      "item": [
+        {
+          "name": "Bug",
+          "item": [
+            {
+              "name": "validasi quantity",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"400 Bad Request\", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": 1,\r\n  \"petId\": 1,\r\n  \"quantity\": 9999999999999999,\r\n  \"shipDate\": \"2026-04-04T01:51:04.540Z\",\r\n  \"status\": \"sold\",\r\n  \"complete\": true\r\n\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/store/order",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "keasalahan pesan api",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "let order = pm.response.json();\r",
+                      "\r",
+                      "pm.environment.set(\"orderbyid\", JSON.stringify(order));\r",
+                      "\r",
+                      "console.log(order);\r",
+                      "pm.test(\"response 400 \", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/store/order/abc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order",
+                    "abc"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Keasalahan pesan api",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"response 400 \", function () {\r",
+                      "    pm.response.to.have.status(400);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/store/order/@@@@",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "store",
+                    "order",
+                    "@@@@"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "get inventory",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"inventory\",JSON.stringify(response));\r",
+                  "\r",
+                  "pm.test(\"Check if inventory is not empty\", function () {\r",
+                  "    pm.expect(response).to.not.be.empty;\r",
+                  "    });\r",
+                  "\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/store/inventory",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "store",
+                "inventory"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"orderid\",response.id);\r",
+                  "pm.environment.set (\"order\", JSON.stringify(response));\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Order ID is not null\", function () {\r",
+                  "    pm.expect(response.orderId).to.not.be.null;\r",
+                  "    });\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": 12,\r\n  \"petId\": 1,\r\n  \"quantity\": 23,\r\n  \"shipDate\": \"2026-04-04T01:51:04.540Z\",\r\n  \"status\": \"sold\",\r\n  \"complete\": true\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/store/order",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "store",
+                "order"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Order  by id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let order = pm.response.json();\r",
+                  "\r",
+                  "pm.environment.set(\"orderbyid\", JSON.stringify(order));\r",
+                  "\r",
+                  "console.log(order);\r",
+                  "pm.test(\"response 200 \", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/store/order/{{orderid}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "store",
+                "order",
+                "{{orderid}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delet by id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/store/order/{{orderid}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "store",
+                "order",
+                "{{orderid}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
