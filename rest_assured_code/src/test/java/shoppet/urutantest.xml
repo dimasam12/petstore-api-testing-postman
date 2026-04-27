@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="API Test Suite">
+    <test name="Order Flow Test" preserve-order="true">
+        <classes>
+            <class name="shoppet.postshop"/>
+            <class name="shoppet.getpetshop"/>
+            <class name="shoppet.deletepetshop"/>
+        </classes>
+    </test>
+</suite>
