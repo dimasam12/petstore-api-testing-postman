@@ -10,6 +10,7 @@ Tujuan dari pengujian ini adalah untuk memastikan fungsi API berjalan dengan bai
 * Postman
 * Swagger Petstore API
 * JSON
+* Java
 
 ## 🎯 Ruang Lingkup Pengujian
 
@@ -42,16 +43,22 @@ Detail bug dapat dilihat pada folder `/bug-reports`.
 * `/collection` → File Postman collection
 * `/environment` → Konfigurasi environment Postman
 * `/testcases` → Dokumen test case
+*  /rest assured_code → code java automation 
 * `/bug-reports` → Detail laporan bug
 * `/evidence` → Screenshot hasil testing (fail)
 * `/test-summary` → Ringkasan hasil pengujian
 
-## 🚀 Cara Menjalankan
+## 🚀 Cara Menjalankan postman 
 
 1. Import file collection ke Postman
 2. Import environment
 3. Jalankan menggunakan Collection Runner
 4. Lihat hasil pengujian
+5. 
+ ## 🚀 Cara Menjalankan code java
+ import src  
+ import pom.xml 
+ jalankan code
 
 ## ✅ Kesimpulan
 
